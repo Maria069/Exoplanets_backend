@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Exoplanets</title>
+        <link rel="stylesheet" href="/static/styles/index_style.css">
+    </head>
+    <body>
+        <div class="space">
+            <div class="container">
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <video src="http://localhost:9000/exoplanets-assets/{{ .exoplanet.VideoPath }}" autoplay muted loop playsinline></video>
+                    </div>
+
+                    <div class="overlay">
+                        <div class="overlay-left">
+                            <div class="title">{{ .exoplanet.Title }}</div>
+                            <div class="description">{{ .exoplanet.Description }}</div>
+                            <button class="read-more-btn" onclick="toggleText()">Читать далее </button>
+                        </div>
+
+                        <div class="overlay-right">
+                            <div class="block">
+                                <img src="/static/img/like.png" alt="Лайк" class="icon like-icon" />
+                                <p class="counter">{{ len .exoplanet.Likes }} </p>
+                            </div>
+                            <div class="block">
+                                <img src="/static/img/distance.png" alt="Расстояние" class="icon like-icon" />
+                                <p class="counter">{{ .exoplanet.Distance }} </p>
+                            </div>
+                            <div class="block">
+                                <img src="/static/img/temperature.png" alt="Температура" class="icon like-icon" />
+                                <p class="counter">{{ .exoplanet.Temperature }} </p>
+                            </div>
+                            <a href="/Exoplanets/{{ .exoplanet.ID }}?next=true">
+                                <img src="/static/img/next.png" alt="Следующее" class="icon next-icon" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="nav">
+                <ul class="nav-list">
+                <li class="active">
+                    <a href="/Exoplanets/1">
+                    <img class="pic" src="/static/img/main.png" alt="Лента" width="50px" height="50px" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/AddExoplanet">
+                    <img class="pic" src="/static/img/plus.png" alt="Добавление" width="50px" height="50px"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Exoplanets">
+                    <img class="pic" src="/static/img/cards.png" alt="Плитка"width="50px" height="50px"/>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

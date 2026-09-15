@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Exoplanets</title>
+        <link rel="stylesheet" href="/static/styles/exoplanet_style.css">
+    </head>
+    <body>
+        <div class="space">
+            <div class="container">
+                <div class="catalog-container">
+                <form action="/Exoplanets" method="GET">
+                    <input class="search" type="text" name="query" placeholder="Введите запрос" value="{{ .query }}">
+                    <button type="submit" class="search_btn">Найти</button>
+                </form>
+                
+                <ul class="cards-list">
+                    {{ range .exoplanets }}
+                    <li class="card">
+                    <div class="block">
+                        <img src="/static/img/like.png" alt="Лайк" class="icon like-icon" />
+                        <p>{{ len .Likes }}</p>
+                    </div>
+                    <img src="http://localhost:9000/exoplanets-assets/{{ .ImagePath }}" class="image">
+                    <p class="title">{{ .Title }}</p>
+                    <div class="short-description">
+                        
+                        <p>Расстояние до звезды: {{ .Distance }} а. е.</p>
+                        <p>Температура звезды: {{ .Temperature }} °C</p>
+                    </div>
+                    
+                    <a href="/Exoplanets/{{ .ID }}" class="card-button">Подробнее</a> 
+                    </li>
+                    {{ end }}
+                </ul>
+                </div>
+            </div>
+
+        <div class="nav">
+            <ul class="nav-list">
+            <li>
+                <a href="/Exoplanets/1">
+                <img class="pic" src="/static/img/main.png" alt="Лента" width="50px" height="50px" />
+                </a>
+            </li>
+            <li>
+                <a href="/AddExoplanet">
+                <img class="pic" src="/static/img/plus.png" alt="Добавление" width="50px" height="50px"/>
+                </a>
+            </li>
+            <li class="active">
+                <a href="/Exoplanets">
+                <img class="pic" src="/static/img/cards.png" alt="Плитка"width="50px" height="50px"/>
+                </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </body>
+</html>
