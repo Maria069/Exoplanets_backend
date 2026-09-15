@@ -70,7 +70,6 @@ func (h *Handler) GetExoplanet(ctx *gin.Context) {
 		logrus.Error(err)
 		return
 	}
-
 	nextParam := ctx.Query("next")
 	var exoplanet repository.Exoplanet
 
@@ -88,7 +87,6 @@ func (h *Handler) GetExoplanet(ctx *gin.Context) {
 		ctx.String(http.StatusBadRequest, "параметр next должен быть true или отсутствовать")
 		return
 	}
-
 	if err != nil {
 		logrus.Error(err)
 		ctx.String(http.StatusNotFound, "запись не найдена")
