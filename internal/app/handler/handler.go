@@ -22,11 +22,9 @@ func NewHandler(r *repository.Repository) *Handler {
 func (h *Handler) GetExoplanets(ctx *gin.Context) {
 	var exoplanets []repository.Exoplanet
 	var err error
-
 	searchQuery := ctx.Query("query")
 
-	// получаем значение из поля поиска
-	if searchQuery == "" { // если поле поиска пусто, то просто получаем из репозитория все записи
+	if searchQuery == "" {
 		exoplanets, err = h.Repository.GetExoplanets()
 		if err != nil {
 			logrus.Error(err)
@@ -36,12 +34,11 @@ func (h *Handler) GetExoplanets(ctx *gin.Context) {
 		if err != nil {
 			logrus.Error(err)
 		}
-		exoplanets, err = h.Repository.GetExoplanetsByTemperature(temperature) // в ином случае ищем заказ по заголовку
+		exoplanets, err = h.Repository.GetExoplanetsByTemperature(temperature)
 		if err != nil {
 			logrus.Error(err)
 		}
 	}
-
 	ctx.HTML(http.StatusOK, "exoplanet.html", gin.H{
 		"exoplanets": exoplanets,
 		"query":      searchQuery,
