@@ -21,7 +21,7 @@
                     <li class="card">
                     <div class="block">
                         <img src="/static/img/like.png" alt="Лайк" class="icon like-icon" />
-                        <p>{{ len .Likes }}</p>
+                        <p>{{ index $.likesMap .ID  }}</p>
                     </div>
                     <img src="http://localhost:9000/exoplanets-assets/{{ .ImagePath }}" class="image">
                     <p class="title">{{ .Title }}</p>
