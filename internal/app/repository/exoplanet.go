@@ -29,9 +29,9 @@ func (r *Repository) GetPublishedExoplanets() ([]ds.Exoplanet, error) {
 	return exoplanets, nil
 }
 
-func (r *Repository) GetExoplanetsByTemperature(temperature int) ([]ds.Exoplanet, error) {
+func (r *Repository) GetExoplanetsByWeight(weight float64) ([]ds.Exoplanet, error) {
 	var exoplanets []ds.Exoplanet
-	err := r.db.Where("status = ? AND RAM BETWEEN ? AND ?", "published", temperature).Find(&exoplanets).Error
+	err := r.db.Where("status = ? AND weight = ?", "published", weight).Find(&exoplanets).Error
 
 	if err != nil {
 		return nil, err
@@ -86,6 +86,19 @@ func (r *Repository) UpdateExoplanet(exoplanet ds.Exoplanet) error {
 	return nil
 }
 
+func (r *Repository) GetLikesNumber(id int) (int, error) {
+	var count int64
+	err := r.db.Model(&ds.Likes{}).
+		Where("exoplanet_id = ?", id).
+		Count(&count).Error
+
+	if err != nil {
+		return 0, err
+	}
+
+	return int(count), nil
+}
+
 func (r *Repository) DeleteExoplanet(id int) error {
 	query := "UPDATE exoplanets SET status = $1 WHERE id = $2"
 
@@ -96,19 +109,4 @@ func (r *Repository) DeleteExoplanet(id int) error {
 	}
 
 	return nil
-}
-
-func (r *Repository) GetLikesNumber(id int) (int, error) {
-	query := "SELECT COUNT(*) FROM likes WHERE exoplanet_id = $1"
-
-	row := r.db.Raw(query, id).Row()
-
-	var count int
-	err := row.Scan(&count)
-
-	if err != nil {
-		return 0, err
-	}
-
-	return count, nil
 }

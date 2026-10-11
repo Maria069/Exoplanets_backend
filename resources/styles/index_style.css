@@ -153,12 +153,33 @@ html, body {
   line-height: 1.2;
 }
 
+.description-block {
+  position: relative;
+}
+
 .description {
   font-size: 1rem;
   opacity: 0.9;
   margin: 0;
-  max-width: 70%;                /* чтобы не перекрывало иконки */
+  max-width: 70%;  
+  
+  line-height: 1.4;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+
+/* Когда блок раскрыт — показываем весь текст */
+.description-block.expanded .description {
+  display: block;
+  line-clamp: unset;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+
 
 .overlay-right {
   position: fixed;
@@ -172,8 +193,8 @@ html, body {
 }
 
 .icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   transition: transform 0.2s, opacity 0.2s;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
@@ -184,6 +205,8 @@ html, body {
 }
 
 .read-more-btn {
+  cursor: pointer;
+  user-select: none;
   color: #ffffff;
   background: rgba(51,51,51,0.2);
   text-decoration: none;

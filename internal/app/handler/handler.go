@@ -28,7 +28,7 @@ func NewHandler(r *repository.Repository) *Handler {
 func (h *Handler) RegisterHandler(router *gin.Engine) {
 	router.GET("/Exoplanets", h.GetExoplanets)
 	router.GET("/Exoplanets/:id", h.GetExoplanet)
-	router.GET("/AddExoplanets", h.GetDraftExoplanet)
+	router.GET("/AddExoplanet", h.GetDraftExoplanet)
 	router.POST("/AddExoplanet", h.AddDraftExoplanet)
 	router.POST("/PublishExoplanet", h.PublishExoplanet)
 	router.POST("/DeleteExoplanet", h.DeleteExoplanet)

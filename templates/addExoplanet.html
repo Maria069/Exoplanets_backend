@@ -10,30 +10,63 @@
     <body>
         <div class="space">
         <div class="container">
-            <form>
-                <label for="file-upload">Фото:</label>
-                <input class="file" type="file" id="file-upload" name="uploadedFile">
+            {{ if .hasDraft }}
+            <form action="/PublishExoplanet" method="POST">
+                <div class="media-row">
+                    <div class="media-item">
+                        <label for="file-upload" class="lb_src">Фото:</label>
+                        <img src="http://localhost:9000/exoplanets-assets/{{ .exoplanet.ImagePath }}" class="src" width="100px" height="100px" />
+                        <!-- <img src="/static/img/base_photo.png" width="50px" height="50px" /> -->
+                    </div>
+                    <div class="media-item">
+                        <label for="file-upload" class="lb_src">Видео:</label>
+                        <video src="http://localhost:9000/exoplanets-assets/{{ .exoplanet.VideoPath }}" class="video-preview" width="100px" height="100px"></video>
+                    </div>
+                </div>
+
+                <form>
+                <label for="title">Планета:</label>
+                <input class="txt" type="text" id="title" name="title"
+                    value="{{ .exoplanet.Title }}"
+                    placeholder="Введите название">
+
+                <label for="distance">Расстояние до звезды (а. е.):</label>
+                <input class="txt" type="text" id="distance" name="distance"
+                    value="{{ .exoplanet.Distance }}"
+                    placeholder="например, 1"
+                    inputmode="decimal">
+
+                <label for="temperature">Масса звезды (масс Солнца):</label>
+                <input class="txt" type="text" id="weight" name="weight"
+                    value="{{ .exoplanet.Weight }}"
+                    placeholder="например, 25.5"
+                    inputmode="decimal">
+
+                <label for="description">Описание:</label>
+                <textarea class="description" id="description" name="description"
+                        placeholder="Описание планеты">{{ .exoplanet.Description }}</textarea>
+
+                <button type="submit" class="add-btn">Добавить</button>
+                </form>
             </form>
-            <form>
-                <label for="file-upload">Видео:</label>
-                <input class="file" type="file" id="file-upload" name="uploadedFile">
+            {{ else }}
+            <form class="add-form" action="/AddExoplanet" method="POST">
+                
+                    <label for="file-upload">Фото:</label>
+                    <input class="file" type="file" id="file-upload" name="uploadedFile">
+                
+                    <label for="file-upload">Видео:</label>
+                    <input class="file" type="file" id="file-upload" name="uploadedFile">
+                
+                    <label for="title">Планета:</label>
+                    <input class="txt" type="text" id="title" name="title"
+                        value="{{ .exoplanet.Title }}"
+                        placeholder="Введите название">
+                    
+                        <button type="submit" class="add-btn">Далее</button>
+                
             </form>
-            <form>
-                <label for="name">Планета:</label>
-                <input class="txt" type="text" id="title" placeholder="{{ .exoplanet.Title }}">
-            </form>
-            <form>
-                <label for="name">Расстояние до звезды (а. е.):</label>
-                <input class="txt" type="text" id="title" placeholder="{{ .exoplanet.Distance }}">
-            </form>
-            <form>
-                <label for="name">Температура звезды (°C):</label>
-                <input class="txt" type="text" id="title" placeholder="{{ .exoplanet.Temperature }}">
-            </form>
-            <form>
-                <label for="name">Описание:</label>
-                <input class="description" type="text" id="title" placeholder="{{ .exoplanet.Description }}">
-            </form>
+            {{ end }}
             
         </div>
 

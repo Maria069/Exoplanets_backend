@@ -4,6 +4,7 @@ import (
 	"exoplanets/internal/app/ds"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -22,11 +23,13 @@ func (h *Handler) GetExoplanets(ctx *gin.Context) {
 			logrus.Error(err)
 		}
 	} else {
-		temperature, err := strconv.Atoi(searchQuery)
+		weight, err := strconv.ParseFloat(
+			strings.Replace(searchQuery, ",", ".", 1), 64,
+		)
 		if err != nil {
 			logrus.Error(err)
 		}
-		exoplanets, err = h.Repository.GetExoplanetsByTemperature(temperature) // в ином случае ищем заказ по заголовку
+		exoplanets, err = h.Repository.GetExoplanetsByWeight(weight) // в ином случае ищем заказ по заголовку
 		if err != nil {
 			logrus.Error(err)
 		}
@@ -44,7 +47,7 @@ func (h *Handler) GetExoplanets(ctx *gin.Context) {
 		likesMap[exoplanet.ID] = likesNumber
 	}
 
-	ctx.HTML(http.StatusOK, "exoplanets.html", gin.H{
+	ctx.HTML(http.StatusOK, "exoplanet.html", gin.H{
 		"exoplanets": exoplanets,
 		"likesMap":   likesMap,
 		"query":      searchQuery,
@@ -130,7 +133,7 @@ func (h *Handler) AddDraftExoplanet(ctx *gin.Context) {
 
 func (h *Handler) PublishExoplanet(ctx *gin.Context) {
 	distanceString := ctx.PostForm("distance")
-	temperatureString := ctx.PostForm("temperature")
+	weightString := ctx.PostForm("weight")
 	description := ctx.PostForm("description")
 	creatorID := uint(1)
 
@@ -140,7 +143,9 @@ func (h *Handler) PublishExoplanet(ctx *gin.Context) {
 		logrus.Error(err)
 	}
 
-	temperature, err := strconv.Atoi(temperatureString)
+	weight, err := strconv.ParseFloat(
+		strings.Replace(weightString, ",", ".", 1), 64,
+	)
 
 	if err != nil {
 		logrus.Error(err)
@@ -154,7 +159,7 @@ func (h *Handler) PublishExoplanet(ctx *gin.Context) {
 
 	exoplanet.Status = "published"
 	exoplanet.Distance = distance
-	exoplanet.Temperature = temperature
+	exoplanet.Weight = weight
 	exoplanet.Description = description
 
 	err = h.Repository.UpdateExoplanet(exoplanet)
@@ -183,5 +188,5 @@ func (h *Handler) DeleteExoplanet(ctx *gin.Context) {
 		logrus.Error(err)
 	}
 
-	ctx.Redirect(http.StatusFound, "/exoplanets")
+	ctx.Redirect(http.StatusFound, "/Exoplanets")
 }

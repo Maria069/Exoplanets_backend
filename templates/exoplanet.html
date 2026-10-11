@@ -28,10 +28,17 @@
                     <div class="short-description">
                         
                         <p>Расстояние до звезды: {{ .Distance }} а. е.</p>
-                        <p>Температура звезды: {{ .Temperature }} °C</p>
+                        <p>Масса звезды: {{ .Weight }} масс Солнца</p>
                     </div>
-                    
-                    <a href="/Exoplanets/{{ .ID }}" class="card-button">Подробнее</a> 
+                    <div class="card-actions">
+                        <a href="/Exoplanets/{{ .ID }}" class="card-button">Подробнее</a>
+                        <form action="/DeleteExoplanet" method="POST" class="delete-form">
+                            <input type="hidden" name="id" value="{{ .ID }}" />
+                            <button type="submit" class="card-button" aria-label="Удалить">
+                                <p>Удалить</p>
+                            </button>
+                        </form>
+                    </div>
                     </li>
                     {{ end }}
                 </ul>
