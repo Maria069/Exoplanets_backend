@@ -1,18 +1,5 @@
 # Exoplanets_backend
 
-Учебный REST API на Go (gin + GORM) для сервиса каталога экзопланет. Данные хранятся в PostgreSQL, изображения и видео — в MinIO.
-
-## Стек
-
-| Компонент | Назначение |
-|---|---|
-| Go, gin-gonic/gin | HTTP-сервер и маршрутизация |
-| gorm.io/gorm + driver/postgres | ORM и работа с PostgreSQL |
-| minio-go/v7 | Загрузка файлов в MinIO |
-| viper, godotenv | Чтение `config/config.toml` и `.env` |
-| logrus | Логирование |
-| Docker Compose | Запуск MinIO |
-
 ## Структура проекта
 
 ```
