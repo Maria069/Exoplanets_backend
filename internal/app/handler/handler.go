@@ -17,21 +17,18 @@ func NewHandler(r *repository.Repository) *Handler {
 	}
 }
 
-// RegisterHandler Функция, в которой мы отдельно регистрируем маршруты, чтобы не писать все в одном месте
-//func (h *Handler) RegisterHandler(router *gin.Engine) {
-//router.GET("/exoplanets", h.GetAllExoplanets)
-// router.GET("/", h.GetExoplanets)
-// router.GET("/exoplanet/:id", h.GetExoplanet)
-//router.GET("/", h.GetDraftExoplanet)
-//}
-
 func (h *Handler) RegisterHandler(router *gin.Engine) {
-	router.GET("/Exoplanets", h.GetExoplanets)
-	router.GET("/Exoplanets/:id", h.GetExoplanet)
-	router.GET("/AddExoplanet", h.GetDraftExoplanet)
-	router.POST("/AddExoplanet", h.AddDraftExoplanet)
-	router.POST("/PublishExoplanet", h.PublishExoplanet)
-	router.POST("/DeleteExoplanet", h.DeleteExoplanet)
+	router.GET("/api/Exoplanets", h.GetExoplanets)
+	router.GET("/api/Exoplanets/:id", h.GetExoplanet)
+	router.GET("/api/DraftExoplanets", h.GetDraftExoplanet)
+	router.POST("/api/AddExoplanets", h.AddDraftExoplanet)
+	router.PUT("/api/PublishExoplanets", h.PublishExoplanet)
+	router.DELETE("/api/DeleteExoplanets/:id", h.DeleteExoplanet)
+	router.POST("/api/LikeExoplanets/:id/like", h.LikeExoplanet)
+
+	router.POST("/api/SignUp", h.SignUp)
+	router.POST("/api/SignIn", h.SignIn)
+	router.POST("/api/SignOut", h.SignOut)
 }
 
 func (h *Handler) RegisterStatic(router *gin.Engine) {
