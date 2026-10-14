@@ -106,25 +106,31 @@ html, body {
 
   object-fit: contain;
 
-  color: #ffffff;
+  /* color: #ffffff;
   background: rgba(51,51,51);
+  border: 2px solid #ffffff; */
+  color: #333333;
+  background: #ffffff;
+  border: 2px solid #ffffff;
   text-decoration: none;
   text-align: center;
   padding: 5px 5px 5px 5px;
-  
-  border: 2px solid #ffffff;
+
   transition: .3s;
   border-radius: 5px;
   margin-right: 15px;
 }
 .card-button:hover {
   font-size: 0.9rem;
-  color: #333333;
+  /* color: #333333;
   background: rgba(255,255,255);
+  border: 2px solid #ffffff; */
+  color: #ffffff;
+  background: rgba(51,51,51);
+  border: 2px solid #ffffff;
   text-decoration: none;
   text-align: center;
   padding: 5px 5px 5px 5px;
-  border: 2px solid #ffffff;
   transition: .3s;
   border-radius: 5px;
   margin-right: 15px;
@@ -136,13 +142,13 @@ html, body {
 
 .search_btn {
   color: #333333;
-  font-size: 1rem;
   background: rgba(255,255,255,0.4);
+  border: 2px solid #333333;
+  font-size: 1rem;
   text-decoration: none;
   text-align: center;
   padding: 5px 5px 5px 5px;
   margin-left: 7px;
-  border: 2px solid #333333;
   transition: .3s;
   border-radius: 5px;
   width: 88px;
@@ -151,13 +157,13 @@ html, body {
 
 .search_btn:hover {
   color: #ffffff;
-  font-size: 1rem;
   background: rgba(51,51,51);
+  border: 2px solid #333333;
+  font-size: 1rem;
   text-decoration: none;
   text-align: center;
   padding: 5px 5px 5px 5px;
   margin-top: 7px;
-  border: 2px solid #333333;
   transition: .3s;
   border-radius: 5px;
 }

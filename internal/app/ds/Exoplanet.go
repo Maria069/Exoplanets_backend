@@ -9,8 +9,8 @@ type Exoplanet struct {
 	Distance    int
 	Weight      float64   `gorm:"type:numeric(6,2)"`
 	Description string    `gorm:"type:varchar(300)"`
-	ImagePath   string    `gorm:"type:varchar(100)"`
-	VideoPath   string    `gorm:"type:varchar(100)"`
+	Image       string    `gorm:"type:varchar(100)"`
+	Video       string    `gorm:"type:varchar(100)"`
 	CreatedAt   time.Time `gorm:"autoCreateTime"`
 	CreatorID   uint      `gorm:"index"`
 	Creator     User      `gorm:"foreignKey:CreatorID"`
