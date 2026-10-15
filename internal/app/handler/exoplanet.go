@@ -281,7 +281,7 @@ func (h *Handler) AddDraftExoplanet(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusCreated, gin.H{
 		"exoplanet": draftExoplanet,
-		"message":   "Черновик успешно добавлен",
+		//"message":   "Черновик успешно добавлен",
 	})
 }
 
@@ -338,7 +338,7 @@ func (h *Handler) PublishExoplanet(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{
 		"exoplanet": exoplanet,
-		"message":   "запись успешно обновлена",
+		//"message":   "запись успешно обновлена",
 	})
 }
 
@@ -374,9 +374,9 @@ func (h *Handler) DeleteExoplanet(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "запись успешно удалена",
-	})
+	// ctx.JSON(http.StatusOK, gin.H{
+	// 	"message": "запись успешно удалена",
+	// })
 }
 
 type LikeRequest struct {
@@ -421,9 +421,9 @@ func (h *Handler) LikeExoplanet(ctx *gin.Context) {
 			}
 		}
 
-		ctx.JSON(http.StatusCreated, gin.H{
-			"message": "лайк поставлен",
-		})
+		// ctx.JSON(http.StatusCreated, gin.H{
+		// 	"message": "лайк поставлен",
+		// })
 
 		return
 	}
@@ -437,7 +437,7 @@ func (h *Handler) LikeExoplanet(ctx *gin.Context) {
 		}
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "лайк отменён",
-	})
+	// ctx.JSON(http.StatusOK, gin.H{
+	// 	"message": "лайк отменён",
+	// })
 }

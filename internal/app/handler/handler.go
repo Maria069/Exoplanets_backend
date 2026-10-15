@@ -31,10 +31,10 @@ func (h *Handler) RegisterHandler(router *gin.Engine) {
 	router.POST("/api/SignOut", h.SignOut)
 }
 
-func (h *Handler) RegisterStatic(router *gin.Engine) {
-	router.LoadHTMLGlob("./templates/*")
-	router.Static("/static", "./resources")
-}
+// func (h *Handler) RegisterStatic(router *gin.Engine) {
+// 	router.LoadHTMLGlob("./templates/*")
+// 	router.Static("/static", "./resources")
+// }
 
 func (h *Handler) errorHandler(ctx *gin.Context, errorStatusCode int, err error) {
 	logrus.Error(err.Error())

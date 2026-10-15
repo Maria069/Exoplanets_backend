@@ -25,13 +25,13 @@ func (h *Handler) SignUp(ctx *gin.Context) {
 }
 
 func (h *Handler) SignIn(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "авторизация",
-	})
+	// ctx.JSON(http.StatusOK, gin.H{
+	// 	"message": "авторизация",
+	// })
 }
 
 func (h *Handler) SignOut(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"message": "деавторизация",
-	})
+	// ctx.JSON(http.StatusOK, gin.H{
+	// 	"message": "деавторизация",
+	// })
 }
